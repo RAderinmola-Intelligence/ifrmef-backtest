@@ -3,7 +3,7 @@
 
 Author: Robert (Roy) Adeniyi Aderinmola
 Version: 1.0
-Date registered: [22 October 2026]
+Date registered: 22 October 2026
 Status: **No Phase 1 model has been run. This file must be committed before any Phase 1 code is run.**
 
 ## 1. Why this test
