@@ -1,0 +1,5 @@
+spec,first_forecast,last_outcome_month,oos_months,episodes_in_eval,mse_A,mse_B,oos_r2_B_vs_A,ci95_lo,ci95_hi,mae_A,mae_B,cond1_r2_ge_0.02,cond2_ci_excludes_0,cond3_loeo_ok,episodes_negative_when_dropped,verdict,primary
+Severity(3),2002-01,2026-05,293,5,0.8301,0.8782,-0.0579,-0.2213,-0.0294,0.4367,0.4623,False,False,False,5,NOT SUPPORTED,True
+Severity(6),2002-01,2026-02,290,5,1.7222,1.9771,-0.148,-0.3339,-0.0953,0.6719,0.7579,False,False,False,5,NOT SUPPORTED,False
+Persistence(6),2002-01,2026-02,290,5,3.2144,3.8206,-0.1886,-0.4933,0.1262,1.2591,1.2872,False,False,False,5,INCONCLUSIVE (interval includes both 0 and 0.02),False
+Persistence(12),2003-01,2025-08,272,5,12.3785,14.5919,-0.1788,-0.4748,0.0719,2.517,2.6766,False,False,False,5,INCONCLUSIVE (interval includes both 0 and 0.02),False
