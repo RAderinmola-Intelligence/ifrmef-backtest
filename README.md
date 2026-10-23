@@ -65,7 +65,8 @@ Run on 22 October 2026 with FRED downloads of `UMCSENT` (to Aug 2026) and `STLFS
 **Interpretation and next step.** Onsets such as early 2020 are largely exogenous shocks, which the Federal Reserve's framework treats as hard to forecast, in contrast to vulnerabilities, which can be monitored as they build. A better-posed test may be whether sentiment and other indicators help predict the *severity or persistence* of stress once a shock occurs, which is what vulnerabilities affect. That is a new design and will be pre-registered in this repository before it is run, and results will be reported alongside this one.
 
 ## Phase 1, Stage 1 results (pre-registered)
-Registered in `PREREGISTRATION.md` and `PREREGISTRATION_ADDENDUM.md` before any Phase 1 model was run. Code: `src/phase1.py`. Run once, on the data in `data/raw` (UMCSENT to August 2026; STLFSI4 to October 2026, current revised values). Settings were not changed after seeing results.
+PREREGISTRATION.md was committed before any Phase 1 model was run. PREREGISTRATION_ADDENDUM.md, which fixes implementation details, was written before the run but committed afterwards, together with the code, so the repository’s timestamps cannot confirm its timing.”
+Code: `src/phase1.py`. Run once, on the data in `data/raw` (UMCSENT to August 2026; STLFSI4 to October 2026, current revised values). Settings were not changed after seeing results.
 
 Question: does adding consumer sentiment to a stress-index baseline improve out-of-sample forecasts of how severe and how persistent U.S. financial stress becomes? Metric: out-of-sample R² of model B (stress + sentiment) relative to baseline A (stress only), `1 - MSE_B / MSE_A`. Negative means sentiment made forecasts worse.
 
