@@ -4,6 +4,7 @@
 Date: 22 October 2026
 Applies to: `PREREGISTRATION.md` v1.0 (the original text is not edited)
 Status: **Written before any Phase 1 model was run.** No Phase 1 result had been seen when this addendum was written.
+“Note: written before the Phase 1 code was run, but committed to this repository afterwards, together with the code.”
 
 The original registration leaves a few implementation details open. They are fixed here so that they cannot be chosen after seeing results. None of them changes a registered setting.
 
