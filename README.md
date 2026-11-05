@@ -6,6 +6,12 @@ A small, reproducible back-test of one question behind early-warning analytics f
 
 This is a prototype built on public data. It tests one indicator against one stress measure. It is not a claim that any framework works.
 
+## Status at a glance
+- **Phase 0 (onset of stress):** no evidence that consumer sentiment helps; low power. See Results.
+- **Phase 1, Stage 1 (pre-registered; severity and persistence of stress):** sentiment did not help. Primary test: out-of-sample R² -0.058 (95% interval -0.221 to -0.029). See Phase 1 results.
+- **Next:** credit, funding and cross-border indicators, to be registered before they are run.
+- **Author:** Robert (Roy) Aderinmola, https://www.linkedin.com/in/roy-aderinmola-1aa27944/. 
+
 ## Why this question
 Official data used to monitor financial risk are often reported with a lag. For example, the Federal Reserve's May 2026 Financial Stability Report notes that hedge fund data from Form PF are reported on a two-quarter lag. Higher-frequency indicators are one way to add earlier information. This repo tests whether one such indicator, consumer sentiment, does.
 
@@ -60,6 +66,7 @@ Run on 22 October 2026 with FRED downloads of `UMCSENT` (to Aug 2026) and `STLFS
 - Across all nine pre-registered settings, adding sentiment did **not** improve out-of-sample AUC. Differences are negative in eight of nine and positive in one (+0.150), and that one has a wide interval (-0.23 to 0.51). Several intervals exclude zero on the negative side.
 - The baseline itself (stress level and change) has AUC near or below 0.5 in most settings. Stress onset is not predictable from these inputs in this design.
 - The test has very low power. Out-of-sample forecasts start in 2005, and the stress episodes in that period are essentially 2007 to 2008 and early 2020. Two episodes cannot support a firm conclusion in either direction.
+  
 - **Conclusion: no evidence that consumer sentiment adds information for warning of stress onset beyond the stress index in this design. The result is inconclusive for the broader question.**
 
 **Interpretation and next step.** Onsets such as early 2020 are largely exogenous shocks, which the Federal Reserve's framework treats as hard to forecast, in contrast to vulnerabilities, which can be monitored as they build. A better-posed test may be whether sentiment and other indicators help predict the *severity or persistence* of stress once a shock occurs, which is what vulnerabilities affect. That is a new design and will be pre-registered in this repository before it is run, and results will be reported alongside this one.
