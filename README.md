@@ -90,6 +90,8 @@ For the primary specification: 293 forecast months (January 2002 on), five stres
 
 **Not done.** Robustness with the NFCI and OFR indexes was not run. Their scales differ and a threshold for each has to be registered first (see the addendum). All data are current revised values, not real-time vintages, so nothing here is a real-time forecasting claim. The Phase 1 code was written with AI assistance and has not yet had independent technical review.
 
+**Exploratory addition.** After the results were seen, a Clark–West test was run on the Stage 1 forecasts (`src/clark_west.py`, results in `outputs/stage1_clark_west_exploratory.csv`). One-sided p-values are 0.91 (Severity(3)), 0.98 (Severity(6)), 0.48 (Persistence(6)) and 0.53 (Persistence(12)), so the null result is not an artifact of estimation noise in nested-model comparisons. This was added after the registered results were known and does not change the registered verdict.
+
 Full tables: `outputs/phase1_results_real.csv`, `outputs/phase1_leave_one_episode_out_real.csv`, `outputs/phase1_episodes_real.csv`. Chart: `outputs/phase1_primary_real.png`.
 
 ## What the tests cover
