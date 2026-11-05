@@ -2,8 +2,14 @@
 
 # Addendum to the Phase 1, Stage 1 pre-registration
 Date: 22 October 2026
+
+
 Applies to: `PREREGISTRATION.md` v1.0 (the original text is not edited)
+
+
 Status: **Written before any Phase 1 model was run.** No Phase 1 result had been seen when this addendum was written.
+
+
 Note: written before the Phase 1 code was run, but committed to this repository afterwards, together with the code.
 
 
