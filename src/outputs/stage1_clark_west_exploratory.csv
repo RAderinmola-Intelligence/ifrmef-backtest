@@ -1,5 +1,0 @@
-spec,primary,oos_months,oos_r2_B_vs_A,clark_west_t,one_sided_p
-Severity(3),True,293,-0.0579,-1.365,0.9138
-Severity(6),False,290,-0.148,-2.059,0.9802
-Persistence(6),False,290,-0.1886,0.053,0.479
-Persistence(12),False,272,-0.1788,-0.085,0.5338
