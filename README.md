@@ -96,7 +96,7 @@ Full tables: `outputs/phase1_results_real.csv`, `outputs/phase1_leave_one_episod
 
 ## Phase 1, Stage 2a: excess bond premium (result: no improvement in the primary test)
 
-Registered in `PREREGISTRATION_STAGE2A.md` (commit `4d729ef`, 24 November 2026) before any Stage 2a code was written or run. Code: `src/stage2a.py`, tests in `tests/test_stage2a.py`. Run once on the data in `data/raw`: the Federal Reserve Board's excess bond premium file downloaded 24 November 2026 (January 1973 to October 2026, 646 months, no gaps; only the `ebp` column is used) and `STLFSI4` to 9 October 2026, current revised values. Settings were not changed after seeing results. Code commit: `[commit hash of the code commit]`.
+Registered in `PREREGISTRATION_STAGE2A.md` (commit `4d729ef`, 24 November 2026) before any Stage 2a code was written or run. Code: `src/stage2a.py`, tests in `tests/test_stage2a.py`. Run once on the data in `data/raw`: the Federal Reserve Board's excess bond premium file downloaded 24 November 2026 (January 1973 to October 2026, 646 months, no gaps; only the `ebp` column is used) and `STLFSI4` to 9 October 2026, current revised values. Settings were not changed after seeing results. Code commit: `a8f86f8`.
 
 Question: does the excess bond premium (its level and 3-month change) improve forecasts of how severe and how persistent U.S. financial stress becomes, beyond the stress index itself?
 
