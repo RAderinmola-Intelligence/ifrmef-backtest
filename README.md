@@ -117,6 +117,29 @@ What this shows, in plain terms:
 
 Files: `outputs/stage2a_results_real.csv`, `stage2a_leave_one_episode_out_real.csv`, `stage2a_episodes_real.csv`, `stage2a_primary_forecasts_real.csv`, `stage2a_primary_real.png`, `stage2a_correlation_real.csv`, `stage2a_sensitivity_excluding_partial_october_2026.csv`.
 
+## Phase 1, Stage 2b: excess bond premium and unemployment (result: inconclusive)
+
+Registered in `PREREGISTRATION_STAGE2B.md` (commit `19e3181`, 24 November 2026) before any Stage 2b code was written or run. This stage was added after the Stage 2a results were seen, chosen from the published literature, and is labelled as such in the registration. Code: `src/stage2b.py`, tests in `tests/test_stage2b.py`. Run once on the data in `data/raw`: the same Federal Reserve Board excess bond premium file as Stage 2a, `UNRATE` (U.S. unemployment rate, seasonally adjusted, January 1948 to October 2026, one blank month, October 2025, which is dropped and not filled) and the NBER recession indicator `USRECM`, all downloaded 24 November 2026, current revised values. File checksums are recorded in the registration. Settings were not changed after seeing results. Code commit: `7e57e29`.
+
+Question: does the excess bond premium (its level and 3-month change) improve out-of-sample forecasts of the change in the unemployment rate over the next 12 months, beyond the unemployment rate's own level and 3-month change?
+
+| Specification | R² of B vs A | 95% interval | Clark–West one-sided p | Registered verdict |
+|---|---|---|---|---|
+| **ΔU(12), 60-row window (primary)** | **0.233** | -0.100 to 0.359 | 0.080 | **Inconclusive (interval includes both 0 and 0.02)** |
+| ΔU(12), 84-row window | 0.230 | -0.194 to 0.359 | 0.093 | Inconclusive |
+| ΔU(6), 60-row window | 0.209 | -0.159 to 0.329 | 0.075 | Inconclusive |
+| ΔU(6), 84-row window | 0.214 | -0.168 to 0.338 | 0.078 | Inconclusive |
+
+What this shows, in plain terms:
+- **Primary test:** the point estimate is a 23% reduction in squared forecast error, but the 95% interval runs from -0.10 to 0.36, so it cannot rule out zero. Under the registered rule the verdict is "inconclusive". The Clark–West p-value (0.080) does not reach 0.05. Both training windows give the same verdict.
+- **The gain is concentrated in 2020 and 2021.** The registered check excluding January 2020 to December 2021 gives R² = 0.016 for ΔU(12) (interval -0.164 to 0.204, Clark–West p = 0.031) and R² = -0.024 for ΔU(6) (Clark–West p = 0.010). In an exploratory breakdown made after the run, about 97% of the primary specification's total squared-error gain falls in those two years. Leaving out the 2020 recession alone, as the leave-one-episode-out check does, removes only the months up to April 2020 and does not show this.
+- **Outside the pandemic years,** the model with the excess bond premium has slightly lower average errors, and the Clark–West test finds some evidence of a small gain. The gain is just below the registered 0.02 standard in the ΔU(12) case (0.016) and negative in the ΔU(6) case.
+- **Overlap:** the excess bond premium and the unemployment rate have a correlation of 0.14 in levels and 0.08 in 3-month changes (1973-01 to 2026-10), so the premium carries information that is mostly separate from unemployment.
+- **Sample:** 548 forecast months for the primary specification (January 1980 to September 2025), six recessions (1980, 1981–82, 1990–91, 2001, 2007–09, 2020). With the 84-row window there are four.
+- **Limit:** the baseline is deliberately simple, so beating it would not show the premium adds information beyond what forecasters already use.
+
+Files: `outputs/stage2b_results_real.csv`, `stage2b_sensitivity_real.csv`, `stage2b_leave_one_episode_out_real.csv`, `stage2b_episodes_real.csv`, `stage2b_primary_forecasts_real.csv`, `stage2b_primary_real.png`, `stage2b_correlation_real.csv`.
+
 ## What the tests cover
 The tests use synthetic data with a planted link, only to confirm that (1) features use no future information, (2) the pipeline runs end to end, and (3) it can detect a signal when one exists. Synthetic output is never a finding. The `--synthetic` flag is labeled accordingly.
 
