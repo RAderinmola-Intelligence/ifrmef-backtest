@@ -1,0 +1,5 @@
+spec,setting,min_train,first_forecast,last_outcome_month,oos_months,episodes_in_eval,mse_A,mse_B,oos_r2_B_vs_A,ci95_lo,ci95_hi,mae_A,mae_B,clark_west_t,clark_west_p_one_sided,cond1_r2_ge_0.02,cond2_ci_excludes_0,cond3_loeo_ok,episodes_negative_when_dropped,verdict,primary
+DeltaU(12),primary window (60),60,1980-01,2025-09,548,6,3.422,3.6932,-0.0792,-0.1431,-0.0308,1.0057,1.0419,-1.51,0.9345,False,False,False,6,NOT SUPPORTED,True
+DeltaU(12),sensitivity window (84),84,1982-01,2025-09,524,4,3.4095,3.6709,-0.0767,-0.1077,-0.0153,0.9775,1.0126,-1.417,0.9217,False,False,False,4,NOT SUPPORTED,False
+DeltaU(6),primary window (60),60,1979-01,2026-04,565,6,2.0537,2.1107,-0.0277,-0.1558,-0.012,0.5844,0.604,-2.378,0.9913,False,False,False,6,NOT SUPPORTED,False
+DeltaU(6),sensitivity window (84),84,1981-01,2026-04,541,5,2.127,2.1867,-0.028,-0.1707,-0.012,0.588,0.6087,-2.468,0.9932,False,False,False,5,NOT SUPPORTED,False
