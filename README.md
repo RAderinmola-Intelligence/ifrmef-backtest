@@ -10,7 +10,8 @@ This is a prototype built on public data. It tests one indicator against one str
 - **Phase 0 (onset of stress):** no evidence that consumer sentiment helps; low power. See Results.
 - **Phase 1, Stage 1 (pre-registered; severity and persistence of stress):** sentiment did not help. Primary test: out-of-sample R² -0.058 (95% interval -0.221 to -0.029). See Phase 1 results.
 - **Phase 1, Stage 2a (pre-registered; excess bond premium):** no improvement in the primary test. Out-of-sample R² -0.029 (95% interval -0.103 to 0.025), inconclusive by the registered rule. See Stage 2a results.
-- **Next:** repo and funding indicators and cross-border banking data, each registered before it is run.
+- **Phase 1, Stage 2b (pre-registered; excess bond premium and unemployment):** inconclusive. Out-of-sample R² 0.233 (95% interval -0.100 to 0.359); about 97% of the gain falls in 2020 and 2021. See Stage 2b results.
+- **Next:** repo and funding indicators, bank credit growth and cross-border banking data, each registered before it is run.
 - **Author:** Robert (Roy) Aderinmola, https://www.linkedin.com/in/roy-aderinmola-1aa27944/. 
 
 ## Why this question
