@@ -9,7 +9,8 @@ This is a prototype built on public data. It tests one indicator against one str
 ## Status at a glance
 - **Phase 0 (onset of stress):** no evidence that consumer sentiment helps; low power. See Results.
 - **Phase 1, Stage 1 (pre-registered; severity and persistence of stress):** sentiment did not help. Primary test: out-of-sample R² -0.058 (95% interval -0.221 to -0.029). See Phase 1 results.
-- **Next:** credit, funding and cross-border indicators, to be registered before they are run.
+- **Phase 1, Stage 2a (pre-registered; excess bond premium):** no improvement in the primary test. Out-of-sample R² -0.029 (95% interval -0.103 to 0.025), inconclusive by the registered rule. See Stage 2a results.
+- **Next:** repo and funding indicators and cross-border banking data, each registered before it is run.
 - **Author:** Robert (Roy) Aderinmola, https://www.linkedin.com/in/roy-aderinmola-1aa27944/. 
 
 ## Why this question
@@ -41,6 +42,7 @@ python backtest.py --horizon 6 --threshold 0.5  # variants
 python backtest.py --grid                       # all pre-registered settings
 python backtest.py --stress NFCI --threshold 0 # robustness: Chicago Fed NFCI
 python phase1.py                                # Phase 1, Stage 1 (pre-registered)
+python stage2a.py                               # Phase 1, Stage 2a (pre-registered; needs data/raw/ebp_csv.csv)
 cd .. && pytest                                 # tests (synthetic data)
 ```
 Outputs go to `outputs/`: out-of-sample predictions (CSV) and a probability chart (PNG).
@@ -127,6 +129,7 @@ The tests use synthetic data with a planted link, only to confirm that (1) featu
 
 ## Data
 Public series from the Federal Reserve Bank of St. Louis (FRED). Check each series' terms of use. Data are downloaded at run time and not redistributed here.
+The excess bond premium file is not on FRED. Download it from the Federal Reserve Board at https://www.federalreserve.gov/econres/notes/feds-notes/ebp_csv.csv, save it as data/raw/ebp_csv.csv, and record the download date. The history of this file can be revised each month, so results depend on the download date.
 
 ## License
 MIT. See `LICENSE`.
