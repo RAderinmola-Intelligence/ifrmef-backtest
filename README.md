@@ -94,6 +94,27 @@ For the primary specification: 293 forecast months (January 2002 on), five stres
 
 Full tables: `outputs/phase1_results_real.csv`, `outputs/phase1_leave_one_episode_out_real.csv`, `outputs/phase1_episodes_real.csv`. Chart: `outputs/phase1_primary_real.png`.
 
+## Phase 1, Stage 2a: excess bond premium (result: no improvement in the primary test)
+
+Registered in `PREREGISTRATION_STAGE2A.md` (commit `4d729ef`, 24 November 2026) before any Stage 2a code was written or run. Code: `src/stage2a.py`, tests in `tests/test_stage2a.py`. Run once on the data in `data/raw`: the Federal Reserve Board's excess bond premium file downloaded 24 November 2026 (January 1973 to October 2026, 646 months, no gaps; only the `ebp` column is used) and `STLFSI4` to 9 October 2026, current revised values. Settings were not changed after seeing results. Code commit: `[commit hash of the code commit]`.
+
+Question: does the excess bond premium (its level and 3-month change) improve forecasts of how severe and how persistent U.S. financial stress becomes, beyond the stress index itself?
+
+| Specification | R² of B vs A | 95% interval | Clark–West one-sided p | Registered verdict |
+|---|---|---|---|---|
+| **Severity(3) (primary)** | **-0.029** | -0.103 to 0.025 | 0.58 | **Inconclusive (interval includes both 0 and 0.02)** |
+| Severity(6) | -0.038 | -0.058 to 0.022 | 0.83 | Inconclusive |
+| Persistence(6) | 0.214 | -0.186 to 0.540 | 0.085 | Inconclusive |
+| Persistence(12) | 0.149 | -0.278 to 0.400 | 0.066 | Inconclusive |
+
+What this shows, in plain terms:
+- **Primary test:** the excess bond premium did not improve the 3-month severity forecast. The point estimate is slightly negative (-0.029), the Clark–West test finds no evidence of a gain (p = 0.58), and the interval is too wide to rule out either zero or a small gain. Under the registered rule this is "inconclusive". It is not evidence of improvement.
+- **Persistence specifications (secondary):** the point estimates are positive (0.21 and 0.15), but both intervals include zero, the Clark–West p-values (0.085 and 0.066) do not reach 0.05, and the gain falls sharply when the 2007–2009 episode is left out (0.21 to 0.10, and 0.15 to 0.05). With five stress episodes and four specifications tested, this is a lead to examine, not a finding. It does not change the headline conclusion.
+- **Overlap with the stress index:** the excess bond premium and the stress index have a correlation of 0.83 in levels and 0.69 in 3-month changes (1994-03 to 2026-10). Much of the premium is already in the baseline, as expected.
+- **Sample:** 295 forecast months for the primary specification (January 2002 to July 2026), five stress episodes. The last month of the stress series (October 2026) contains only two weekly readings. A check excluding it gives the same results (`outputs/stage2a_sensitivity_excluding_partial_october_2026.csv`); this check was added after the run and is exploratory.
+
+Files: `outputs/stage2a_results_real.csv`, `stage2a_leave_one_episode_out_real.csv`, `stage2a_episodes_real.csv`, `stage2a_primary_forecasts_real.csv`, `stage2a_primary_real.png`, `stage2a_correlation_real.csv`, `stage2a_sensitivity_excluding_partial_october_2026.csv`.
+
 ## What the tests cover
 The tests use synthetic data with a planted link, only to confirm that (1) features use no future information, (2) the pipeline runs end to end, and (3) it can detect a signal when one exists. Synthetic output is never a finding. The `--synthetic` flag is labeled accordingly.
 
