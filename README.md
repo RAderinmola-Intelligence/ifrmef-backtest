@@ -44,6 +44,7 @@ python backtest.py --grid                       # all pre-registered settings
 python backtest.py --stress NFCI --threshold 0 # robustness: Chicago Fed NFCI
 python phase1.py                                # Phase 1, Stage 1 (pre-registered)
 python stage2a.py                               # Phase 1, Stage 2a (pre-registered; needs data/raw/ebp_csv.csv)
+python stage2b.py                               # Phase 1, Stage 2b (pre-registered; needs data/raw/ebp_csv.csv, UNRATE.csv and USRECM.csv)
 cd .. && pytest                                 # tests (synthetic data)
 ```
 Outputs go to `outputs/`: out-of-sample predictions (CSV) and a probability chart (PNG).
@@ -154,6 +155,7 @@ The tests use synthetic data with a planted link, only to confirm that (1) featu
 ## Data
 Public series from the Federal Reserve Bank of St. Louis (FRED). Check each series' terms of use. Data are downloaded at run time and not redistributed here.
 The excess bond premium file is not on FRED. Download it from the Federal Reserve Board at https://www.federalreserve.gov/econres/notes/feds-notes/ebp_csv.csv, save it as data/raw/ebp_csv.csv, and record the download date. The history of this file can be revised each month, so results depend on the download date.
+The Stage 2b series are on FRED: UNRATE (https://fred.stlouisfed.org/series/UNRATE) and USRECM (https://fred.stlouisfed.org/series/USRECM). Download each as CSV, save them as data/raw/UNRATE.csv and data/raw/USRECM.csv, and record the download date. UNRATE has one blank month (October 2025), which the code drops and does not fill.
 
 ## License
 MIT. See `LICENSE`.
