@@ -1,0 +1,3 @@
+spec,setting,min_train,oos_months,oos_r2_B_vs_A,ci95_lo,ci95_hi,mae_A,mae_B,clark_west_t,clark_west_p_one_sided
+DeltaU(12),excluding Jan 2020 to Dec 2021,60,524,0.0162,-0.1635,0.204,0.8945,0.8813,1.868,0.0309
+DeltaU(6),excluding Jan 2020 to Dec 2021,60,541,-0.0242,-0.3054,0.2114,0.4575,0.4516,2.326,0.01

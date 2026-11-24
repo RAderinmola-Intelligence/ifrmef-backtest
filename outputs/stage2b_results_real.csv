@@ -1,0 +1,5 @@
+spec,setting,min_train,first_forecast,last_outcome_month,oos_months,episodes_in_eval,mse_A,mse_B,oos_r2_B_vs_A,ci95_lo,ci95_hi,mae_A,mae_B,clark_west_t,clark_west_p_one_sided,cond1_r2_ge_0.02,cond2_ci_excludes_0,cond3_loeo_ok,episodes_negative_when_dropped,verdict,primary
+DeltaU(12),primary window (60),60,1980-01,2025-09,548,6,3.422,2.6233,0.2334,-0.1004,0.3588,1.0057,0.9566,1.405,0.08,True,False,True,0,INCONCLUSIVE (interval includes both 0 and 0.02),True
+DeltaU(12),sensitivity window (84),84,1982-01,2025-09,524,4,3.4095,2.6244,0.2303,-0.1942,0.3592,0.9775,0.9371,1.322,0.0931,True,False,True,0,INCONCLUSIVE (interval includes both 0 and 0.02),False
+DeltaU(6),primary window (60),60,1979-01,2026-04,565,6,2.0537,1.6256,0.2085,-0.1587,0.3286,0.5844,0.5469,1.442,0.0747,True,False,True,0,INCONCLUSIVE (interval includes both 0 and 0.02),False
+DeltaU(6),sensitivity window (84),84,1981-01,2026-04,541,5,2.127,1.6729,0.2135,-0.1679,0.3381,0.588,0.5486,1.417,0.0783,True,False,True,0,INCONCLUSIVE (interval includes both 0 and 0.02),False
