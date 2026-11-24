@@ -11,7 +11,8 @@ This is a prototype built on public data. It tests one indicator against one str
 - **Phase 1, Stage 1 (pre-registered; severity and persistence of stress):** sentiment did not help. Primary test: out-of-sample R² -0.058 (95% interval -0.221 to -0.029). See Phase 1 results.
 - **Phase 1, Stage 2a (pre-registered; excess bond premium):** no improvement in the primary test. Out-of-sample R² -0.029 (95% interval -0.103 to 0.025), inconclusive by the registered rule. See Stage 2a results.
 - **Phase 1, Stage 2b (pre-registered; excess bond premium and unemployment):** inconclusive. Out-of-sample R² 0.233 (95% interval -0.100 to 0.359); about 97% of the gain falls in 2020 and 2021. See Stage 2b results.
-- **Next:** repo and funding indicators, bank credit growth and cross-border banking data, each registered before it is run.
+- **Phase 1, Stage 2c (pre-registered; bank loan growth and unemployment):** not supported. Out-of-sample R² -0.079 (95% interval -0.143 to -0.031); loan growth made forecasts worse. See Stage 2c results.
+- **Next:** repo and funding indicators and cross-border banking data, each registered before it is run.
 - **Author:** Robert (Roy) Aderinmola, https://www.linkedin.com/in/roy-aderinmola-1aa27944/. 
 
 ## Why this question
@@ -45,6 +46,7 @@ python backtest.py --stress NFCI --threshold 0 # robustness: Chicago Fed NFCI
 python phase1.py                                # Phase 1, Stage 1 (pre-registered)
 python stage2a.py                               # Phase 1, Stage 2a (pre-registered; needs data/raw/ebp_csv.csv)
 python stage2b.py                               # Phase 1, Stage 2b (pre-registered; needs data/raw/ebp_csv.csv, UNRATE.csv and USRECM.csv)
+python stage2c.py                               # Phase 1, Stage 2c (pre-registered; needs data/raw/H8_B1020NCBCMG_monthly.csv, UNRATE.csv and USRECM.csv)
 cd .. && pytest                                 # tests (synthetic data)
 ```
 Outputs go to `outputs/`: out-of-sample predictions (CSV) and a probability chart (PNG).
@@ -142,6 +144,29 @@ What this shows, in plain terms:
 
 Files: `outputs/stage2b_results_real.csv`, `stage2b_sensitivity_real.csv`, `stage2b_leave_one_episode_out_real.csv`, `stage2b_episodes_real.csv`, `stage2b_primary_forecasts_real.csv`, `stage2b_primary_real.png`, `stage2b_correlation_real.csv`.
 
+## Phase 1, Stage 2c: bank loan growth and unemployment (result: not supported)
+
+Registered in `PREREGISTRATION_STAGE2C.md` (commit `b5a5454`, 24 November 2026) before any Stage 2c code was written or run. This stage was added after the Stage 2a and 2b results were seen and uses the same design as Stage 2b, so the two can be compared directly. Code: `src/stage2c.py`, tests in `tests/test_stage2c.py`. Run once on current revised data downloaded 24 November 2026: Federal Reserve H.8 series `B1020NCBCMG` (loans and leases in bank credit, all commercial banks, seasonally adjusted, annualized growth rate, break adjusted, monthly), extracted unchanged from the Federal Reserve's XML package to `data/raw/H8_B1020NCBCMG_monthly.csv`; the same `UNRATE` and `USRECM` files as Stage 2b. File checksums are recorded in the registration. The original XML package (about 80 MB) is not stored here. Settings were not changed after seeing results. Code commit: `94ef62c`.
+
+Question: does bank loan growth (its level and 3-month change, as published, with no smoothing) improve out-of-sample forecasts of the change in the unemployment rate over the next 12 months, beyond the unemployment rate's own level and 3-month change?
+
+| Specification | R² of B vs A | 95% interval | Clark–West one-sided p | Registered verdict |
+|---|---|---|---|---|
+| **ΔU(12), 60-row window (primary)** | **-0.079** | -0.143 to -0.031 | 0.93 | **Not supported** |
+| ΔU(12), 84-row window | -0.077 | -0.108 to -0.015 | 0.92 | Not supported |
+| ΔU(6), 60-row window | -0.028 | -0.156 to -0.012 | 0.99 | Not supported |
+| ΔU(6), 84-row window | -0.028 | -0.171 to -0.012 | 0.99 | Not supported |
+
+What this shows, in plain terms:
+- **Primary test:** adding loan growth made the forecasts worse. Squared forecast error rose, and the 95% interval lies entirely below zero. The Clark–West test finds no evidence of a gain (p = 0.93). Both training windows and both horizons agree.
+- **It does not depend on one episode.** R² stays negative when each of the six recessions is dropped in turn (-0.062 to -0.087), and when January 2020 to December 2021 is excluded (-0.073 for ΔU(12), -0.043 for ΔU(6)).
+- **Overlap:** loan growth and the unemployment rate have a correlation of -0.26 in levels and 0.02 in 3-month changes (1973-04 to 2026-10). Loan growth and the excess bond premium have -0.12 in levels and 0.19 in 3-month changes (1973-01 to 2026-10). These are descriptive only.
+- **Sample:** 548 forecast months for the primary specification (January 1980 to September 2025), six recessions (1980, 1981–82, 1990–91, 2001, 2007–09, 2020). The baseline error is identical to Stage 2b, as it should be, because the sample is the same.
+- **Limits:** the monthly annualized growth rate is noisy and is used here without smoothing, so this result is for that form only. It does not show that bank credit has no value as an indicator. Published work suggests credit growth may matter more for the severity of downturns than for their timing, and a U.S.-only sample of six recessions is too small to test that. The baseline is deliberately simple. The series is revised by the Federal Reserve, and the latest months in the file differ from the 13 November release table.
+
+Files: `outputs/stage2c_results_real.csv`, `stage2c_sensitivity_real.csv`, `stage2c_leave_one_episode_out_real.csv`, `stage2c_episodes_real.csv`, `stage2c_primary_forecasts_real.csv`, `stage2c_primary_real.png`, `stage2c_correlation_real.csv`, `stage2c_run_log.txt`.
+
+
 ## What the tests cover
 The tests use synthetic data with a planted link, only to confirm that (1) features use no future information, (2) the pipeline runs end to end, and (3) it can detect a signal when one exists. Synthetic output is never a finding. The `--synthetic` flag is labeled accordingly.
 
@@ -156,7 +181,7 @@ The tests use synthetic data with a planted link, only to confirm that (1) featu
 Public series from the Federal Reserve Bank of St. Louis (FRED). Check each series' terms of use. Data are downloaded at run time and not redistributed here.
 The excess bond premium file is not on FRED. Download it from the Federal Reserve Board at https://www.federalreserve.gov/econres/notes/feds-notes/ebp_csv.csv, save it as data/raw/ebp_csv.csv, and record the download date. The history of this file can be revised each month, so results depend on the download date.
 The Stage 2b series are on FRED: UNRATE (https://fred.stlouisfed.org/series/UNRATE) and USRECM (https://fred.stlouisfed.org/series/USRECM). Download each as CSV, save them as data/raw/UNRATE.csv and data/raw/USRECM.csv, and record the download date. UNRATE has one blank month (October 2025), which the code drops and does not fill.
+The Stage 2c series is Federal Reserve H.8 `B1020NCBCMG` (loans and leases in bank credit, all commercial banks, seasonally adjusted, annualized growth rate, break adjusted, monthly). It was extracted unchanged from the Federal Reserve Data Download Program XML package (H.8, downloaded 24 November 2026) and is stored in this repository as `data/raw/H8_B1020NCBCMG_monthly.csv` (columns `month`, `loans_growth`). The XML package itself is about 80 MB and is not stored here. Its checksum and the checksum of the extracted file are in `PREREGISTRATION_STAGE2C.md`. The Federal Reserve revises this series, so results depend on the download date.
 
 ## License
 MIT. See `LICENSE`.
-
